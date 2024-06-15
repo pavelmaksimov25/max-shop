@@ -1,11 +1,17 @@
 {
-    "name": "laravel/laravel",
+    "name": "pavelmaksimov25/max-shop",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Demo B2C Shop.",
+    "authors": [
+        {
+            "name": "Pavel Maksimov",
+            "email": "maksimovpb@gmail.com"
+        }
+    ],
+    "keywords": ["laravel", "framework", "e-commerce", "shop", "b2c"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9"
     },
