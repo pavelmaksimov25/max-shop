@@ -1,19 +1,22 @@
 <?php
 
-namespace Modules\Order\Http\Controllers;
+namespace Modules\Product\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Modules\Product\DataTransferObjects\ProductTransfer;
+use Modules\Product\Http\Requests\ProductStoreRequest;
+use Modules\Product\UseCases\CreateProductUseCase;
 
-class OrderController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('order::index');
+        return view('product::index');
     }
 
     /**
@@ -21,15 +24,18 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order::create');
+        return view('product::create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(CreateProductUseCase $useCase, ProductStoreRequest $request): RedirectResponse
     {
-        return redirect()->route('order.index');
+        $productTransfer = ProductTransfer::fromRequest($request);
+        $useCase->handle($productTransfer);
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -37,7 +43,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('order::show');
+        return view('product::show');
     }
 
     /**
@@ -45,7 +51,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order::edit');
+        return view('product::edit');
     }
 
     /**
